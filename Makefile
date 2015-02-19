@@ -22,7 +22,7 @@ stop:
 	sudo docker.io stop docker-virtuoso_bluetree
 
 rm:
-	sudo docker.io rm aoki/docker-virtuoso
+	sudo docker.io rm docker-virtuoso_bluetree
 
 ip:
 	sudo docker.io inspect -f "{{ .NetworkSettings.IPAddress }}" docker-virtuoso_bluetree
