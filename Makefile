@@ -6,7 +6,7 @@ build:
 	sudo docker build -t aoki/docker-virtuoso .
 
 run:
-	sudo docker run -d --restart="always" -v /opt/virtuoso:/virtuoso:rw -t -p 1111:1111 -p 8890:8890 --name="docker-virtuoso_bluetree" aoki/docker-virtuoso
+	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime:r  -v /opt/virtuoso:/virtuoso:rw -t -p 1111:1111 -p 8890:8890 --name="docker-virtuoso_bluetree" aoki/docker-virtuoso
 #/usr/local/virtuoso-opensource/bin/virtuoso-t -df +configfile /virtuoso-opensource/db/virtuoso.ini
 
 bash:
