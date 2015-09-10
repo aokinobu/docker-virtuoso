@@ -5,9 +5,14 @@ install:
 build:
 	sudo docker build -t aoki/docker-virtuoso .
 
+buildnc:
+	sudo docker build --no-cache=true -t aoki/docker-virtuoso .
+
 run:
 	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime:r  -v /opt/virtuoso:/virtuoso:rw -t -p 1111:1111 -p 8890:8890 --name="docker-virtuoso_bluetree" aoki/docker-virtuoso
-#/usr/local/virtuoso-opensource/bin/virtuoso-t -df +configfile /virtuoso-opensource/db/virtuoso.ini
+
+runbeta:
+	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime:r  -v /opt/beta.virtuoso:/virtuoso:rw -t -p 1112:1111 -p 8891:8890 --name="docker-beta.virtuoso_bluetree" aoki/docker-virtuoso
 
 bash:
 	sudo docker run -it --rm -v /opt/virtuoso:/virtuoso:rw -i -t aoki/docker-virtuoso /bin/bash
@@ -21,8 +26,14 @@ ps:
 stop:
 	sudo docker stop docker-virtuoso_bluetree
 
+stopbeta:
+	sudo docker stop docker-beta.virtuoso_bluetree
+
 rm:
 	sudo docker rm docker-virtuoso_bluetree
+
+rmbeta:
+	sudo docker rm docker-beta.virtuoso_bluetree
 
 ip:
 	sudo docker inspect -f "{{ .NetworkSettings.IPAddress }}" docker-virtuoso_bluetree
@@ -41,5 +52,8 @@ clean: stop rm build run
 
 logs:
 	 sudo docker logs --follow --tail=100 docker-virtuoso_bluetree
+
+logs:
+	 sudo docker logs --follow --tail=100 docker-beta.virtuoso_bluetree
 	
 .PHONY: build run test clean

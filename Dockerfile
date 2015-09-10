@@ -16,7 +16,10 @@ RUN git clone -v https://github.com/openlink/virtuoso-opensource.git 2>&1 > /var
 
 RUN cd /virtuoso-opensource && git fetch origin
 
-RUN cd /virtuoso-opensource && git checkout tags/v7.2.0.1
+#https://github.com/openlink/virtuoso-opensource/blob/stable/7/NEWS
+#https://github.com/openlink/virtuoso-opensource/issues/251
+RUN cd /virtuoso-opensource && git checkout tags/v7.2.1
+#RUN cd /virtuoso-opensource && git checkout tags/v7.2.0.1
 #RUN cd /virtuoso-opensource && git checkout origin/stable/7
 #RUN cd /virtuoso-opensource && git checkout origin/develop/7
 #RUN cd /virtuoso-opensource && git checkout tags/v7.0.0
