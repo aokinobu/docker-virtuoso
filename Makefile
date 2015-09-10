@@ -53,7 +53,7 @@ clean: stop rm build run
 logs:
 	 sudo docker logs --follow --tail=100 docker-virtuoso_bluetree
 
-logs:
+logsbeta:
 	 sudo docker logs --follow --tail=100 docker-beta.virtuoso_bluetree
 	
 .PHONY: build run test clean
