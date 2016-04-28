@@ -1,6 +1,7 @@
 install:
 	mkdir /opt/virtuoso
 	cp -R db /opt/virtuoso
+	cp -R scripts /opt/virtuoso
 
 build:
 	sudo docker build -t aoki/docker-virtuoso .
@@ -13,6 +14,12 @@ run:
 
 runbeta:
 	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime:r  -v /opt/beta.virtuoso:/virtuoso:rw -t -p 1112:1111 -p 8891:8890 --name="docker-beta.virtuoso_bluetree" aoki/docker-virtuoso
+
+exec:
+	sudo docker exec -it docker-virtuoso_bluetree /bin/bash
+
+execscript:
+	sudo docker exec -it docker-virtuoso_bluetree /usr/local/virtuoso-opensource/bin/isql 1111 dba dba /virtuoso/scripts/load.sql -i /virtuoso/rlog.ttl http://test.rlog
 
 bash:
 	sudo docker run -it --rm -v /opt/virtuoso:/virtuoso:rw -i -t aoki/docker-virtuoso /bin/bash
