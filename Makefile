@@ -10,10 +10,10 @@ buildnc:
 	sudo docker build --no-cache=true -t aoki/docker-virtuoso .
 
 run:
-	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime:r  -v /opt/virtuoso:/virtuoso:rw -t -p 1111:1111 -p 8890:8890 --name="docker-virtuoso_bluetree" aoki/docker-virtuoso
+	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime -v /opt/virtuoso:/virtuoso:rw -t -p 1111:1111 -p 8890:8890 --name="docker-virtuoso_bluetree" aoki/docker-virtuoso
 
 runbeta:
-	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime:r  -v /opt/beta.virtuoso:/virtuoso:rw -t -p 1112:1111 -p 8891:8890 --name="docker-beta.virtuoso_bluetree" aoki/docker-virtuoso
+	sudo docker run -d --restart="always" -v /etc/localtime:/etc/localtime -v /opt/beta.virtuoso:/virtuoso:rw -t -p 1112:1111 -p 8891:8890 --name="docker-beta.virtuoso_bluetree" aoki/docker-virtuoso
 
 exec:
 	sudo docker exec -it docker-virtuoso_bluetree /bin/bash
