@@ -1,0 +1,10 @@
+virtuoso:
+  build: .
+  ports:
+    - 1111:1111
+    - 8890:8890
+  volumes:
+    - /opt/virtuoso:/virtuoso
+    - /etc/localtime:/etc/localtime
+  restart: always
+

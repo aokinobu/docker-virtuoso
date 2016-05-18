@@ -1,13 +1,13 @@
-FROM ubuntu:trusty
+FROM debian:jessie
 MAINTAINER Nobuyuki Paul Aoki <aokinobu@gmail.com>
 
 RUN apt-get update
 
 EXPOSE 8890
 
-#ADD 02Proxy /etc/apt/apt.conf.d/
+#RUN echo "Acquire::http { Proxy \"http://test.glytoucan.org:3142\"; };" > /etc/apt/apt.conf.d/02Proxy
 
-RUN apt-get -y install dpkg-dev build-essential autoconf automake libtool flex bison gperf gawk m4 make odbcinst libxml2-dev libssl-dev libreadline-dev unzip emacs23-nox git-core openssl
+RUN apt-get -y install dpkg-dev build-essential autoconf automake libtool flex bison gperf gawk m4 make odbcinst libxml2-dev libssl-dev libreadline-dev unzip git-core openssl
 RUN apt-get -y install net-tools
 RUN apt-get -y install procps
 
