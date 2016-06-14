@@ -4,7 +4,7 @@ virtuoso:
     - 1111:1111
     - 8890:8890
   volumes:
-    - /opt/virtuoso:/virtuoso
+    - ${HOME}/virtuoso:/virtuoso
     - /etc/localtime:/etc/localtime
   restart: always
 
