@@ -32,6 +32,7 @@ RUN cd /virtuoso-opensource && make install 2>&1 > /var/log/virtusos-compile.log
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ADD run.sh /run.sh
+RUN chmod a+x /run.sh
 
 RUN mkdir /virtuoso
 
