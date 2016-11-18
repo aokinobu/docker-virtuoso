@@ -2,10 +2,12 @@ version: '2'
 services:
   virtuoso:
     build: .
+    image: aokinobu/virtuoso:v7.2.4.2
     ports:
       - 1111:1111
       - 8890:8890
     volumes:
-      - ${HOME}/virtuoso:/virtuoso
+      - /opt/virtuoso:/virtuoso
       - /etc/localtime:/etc/localtime
     restart: always
+    network_mode: host

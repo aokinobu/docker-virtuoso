@@ -18,7 +18,8 @@ RUN cd /virtuoso-opensource && git fetch origin
 
 #https://github.com/openlink/virtuoso-opensource/blob/stable/7/NEWS
 #https://github.com/openlink/virtuoso-opensource/issues/251
-RUN cd /virtuoso-opensource && git checkout tags/v7.2.1
+RUN cd /virtuoso-opensource && git checkout tags/v7.2.4.2
+#RUN cd /virtuoso-opensource && git checkout tags/v7.2.2.1
 #RUN cd /virtuoso-opensource && git checkout tags/v7.2.0.1
 #RUN cd /virtuoso-opensource && git checkout origin/stable/7
 #RUN cd /virtuoso-opensource && git checkout origin/develop/7
