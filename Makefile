@@ -1,6 +1,8 @@
-install:
+install: cpscripts
 	mkdir /opt/virtuoso
 	cp -R db /opt/virtuoso
+
+cpscripts:
 	cp -R scripts /opt/virtuoso
 
 build:
@@ -19,7 +21,7 @@ exec:
 	 docker exec -it docker-virtuoso_bluetree /bin/bash
 
 execscript:
-	 docker exec -it docker-virtuoso_bluetree /usr/local/virtuoso-opensource/bin/isql 1111 dba dba /virtuoso/scripts/load.sql -i /virtuoso/rlog.ttl http://test.rlog
+	 docker exec -it docker-virtuoso_bluetree /usr/local/virtuoso-opensource/bin/isql 1111 dba dba /virtuoso/scripts/load.sql -i /virtuoso/rlog.ttl http://rlog
 
 bash:
 	 docker run -it --rm -v /opt/virtuoso:/virtuoso:rw -i -t aoki/docker-virtuoso /bin/bash
