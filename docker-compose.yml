@@ -10,4 +10,3 @@ services:
       - ${HOME}/${SITE_CODE}/virtuoso/data:/virtuoso
       - /etc/localtime:/etc/localtime
     restart: always
-    network_mode: host
