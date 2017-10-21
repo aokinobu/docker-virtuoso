@@ -1,44 +1,44 @@
-FROM ubuntu:14.04.2
-MAINTAINER Issaku Yamada  <yamadaissaku@gmail.com>
+FROM debian:jessie
+MAINTAINER Nobuyuki Paul Aoki <aokinobu@gmail.com>
 
-RUN export DEBIAN_FRONTEND=noninteractive && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get -y install \
-        git \
-	automake \
-	autoconf \
-	bison \
-	flex \
-	gawk \
-	gperf \
-	libtool \
-	build-essential \
-	libssl-dev \
-        wget \
-        unzip \
-        libreadline-gplv2-dev
+RUN apt-get update
 
-RUN adduser --disabled-password --home=/home/virtuoso --gecos "" virtuoso && \
-    chown -R virtuoso:virtuoso /home/virtuoso
+EXPOSE 8890
 
-WORKDIR /home/virtuoso
+#RUN echo "Acquire::http { Proxy \"http://test.glytoucan.org:3142\"; };" > /etc/apt/apt.conf.d/02Proxy
 
-RUN git clone https://github.com/openlink/virtuoso-opensource.git
+RUN apt-get -y install dpkg-dev build-essential autoconf automake libtool flex bison gperf gawk m4 make odbcinst libxml2-dev libssl-dev libreadline-dev unzip git-core openssl
+RUN apt-get -y install net-tools
+RUN apt-get -y install procps
 
-WORKDIR /home/virtuoso/virtuoso-opensource
+RUN git clone -v https://github.com/openlink/virtuoso-opensource.git 2>&1 > /var/log/virtusos-git.log
+#ADD /virtuoso-opensource /virtuoso-opensource
 
-RUN git branch stable/7 origin/stable/7 && \
-    git checkout stable/7 && \
-    ./autogen.sh && \
-    ./configure --with-readline && \
-    make && \
-    make install && \
-    mkdir -p /usr/local/virtuoso-opensource/lib/virtuoso/hosting && \
-    chown -R virtuoso:virtuoso /usr/local/virtuoso-opensource/ && \
-    mkdir -p /usr/local/virtuoso-opensource/ttl
+RUN cd /virtuoso-opensource && git fetch origin
 
-USER virtuoso
+#https://github.com/openlink/virtuoso-opensource/blob/stable/7/NEWS
+#https://github.com/openlink/virtuoso-opensource/issues/251
+RUN cd /virtuoso-opensource && git checkout tags/v7.2.4.2
+#RUN cd /virtuoso-opensource && git checkout tags/v7.2.2.1
+#RUN cd /virtuoso-opensource && git checkout tags/v7.2.0.1
+#RUN cd /virtuoso-opensource && git checkout origin/stable/7
+#RUN cd /virtuoso-opensource && git checkout origin/develop/7
+#RUN cd /virtuoso-opensource && git checkout tags/v7.0.0
 
-CMD /usr/local/virtuoso-opensource/bin/virtuoso-t -f -c /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
+RUN cd /virtuoso-opensource && ./autogen.sh
+RUN cd /virtuoso-opensource && CFLAGS="-O2 -m64" && export CFLAGS && ./configure
+RUN cd /virtuoso-opensource && make
+RUN cd /virtuoso-opensource && make install 2>&1 > /var/log/virtusos-compile.log
 
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ADD run.sh /run.sh
+RUN chmod a+x /run.sh
+
+RUN mkdir /virtuoso
+
+RUN echo vm.swappiness=10 >> /etc/sysctl.conf
+
+VOLUME [/virtuoso]
+#ENTRYPOINT /sbin/sysctl -w vm.swappiness=10; /run.sh
+CMD ["/run.sh"]
