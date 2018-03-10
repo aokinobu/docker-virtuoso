@@ -39,6 +39,7 @@ RUN mkdir /virtuoso
 
 RUN echo vm.swappiness=10 >> /etc/sysctl.conf
 
+ADD scripts /scripts
 VOLUME [/virtuoso]
 #ENTRYPOINT /sbin/sysctl -w vm.swappiness=10; /run.sh
 CMD ["/run.sh"]
