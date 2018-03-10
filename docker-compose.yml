@@ -1,7 +1,6 @@
 version: '2'
 services:
   virtuoso:
-    build: .
     image: aokinobu/virtuoso:v7.2.4.2
     ports:
       - 1111:1111
@@ -9,4 +8,5 @@ services:
     volumes:
       - ${HOME}/${SITE_CODE}/virtuoso/data:/virtuoso
       - /etc/localtime:/etc/localtime
+      - /usr/local/virtuoso-opensource/bin
     restart: always
