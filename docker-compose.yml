@@ -1,6 +1,7 @@
-version: '2'
+version: '3.4'
 services:
   virtuoso:
+    build: .
     image: aokinobu/virtuoso:v7.2.4.2
     ports:
       - 1111:1111
@@ -8,5 +9,15 @@ services:
     volumes:
       - ${HOME}/${SITE_CODE}/virtuoso/data:/virtuoso
       - /etc/localtime:/etc/localtime
-      - /usr/local/virtuoso-opensource/bin
+    environment:
+      - VIRTUAL_HOST=${VIRTUOSO_VIRTUAL_HOST}
+      - VIRTUAL_PORT=${VIRTUOSO_VIRTUAL_PORT}
+      - LETSENCRYPT_HOST=${VIRTUOSO_VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${VIRTUOSO_VIRTUAL_PORT}
+      - LETSENCRYPT_EMAIL=${SITE_EMAIL}
     restart: always
+
+networks:
+  default:
+    external:
+      name: ${NETWORK:-webproxy}
