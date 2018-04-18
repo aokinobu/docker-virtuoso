@@ -4,7 +4,8 @@ echo "this is the /virtuoso directory:"
 ls -al /virtuoso/
 
 if [ ! -f /virtuoso/db/virtuoso.ini ]; then
-    cp -R ./db /virtuoso/
+    echo "ini file does not exist! copying default configuration from source"
+    cp -R /usr/local/virtuoso-opensource/var/lib/virtuoso/db /virtuoso/
 fi
 
 # in case of permissions issue
