@@ -15,4 +15,6 @@ SITE_CODE=code name of your site
 so the virtuoso db data folder is expected to be in:
 /home/username/project_codename/virtuoso/data/
 
+if the db folder (specifically the virtuoso.ini file in the db folder) does not exist, then the default ini file and db folder will be copied from the source code.
+
 have fun!
