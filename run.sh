@@ -11,6 +11,7 @@ fi
 # in case of permissions issue
 if [ ! -f /virtuoso/db/virtuoso.ini ]; then
     echo "no virtuoso configuration found, virtuoso cannot start"
+    exit 1;
 fi
 
 echo "running:>/usr/local/virtuoso-opensource/bin/virtuoso-t -df +configfile /virtuoso/db/virtuoso.ini"
