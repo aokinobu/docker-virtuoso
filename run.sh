@@ -10,7 +10,9 @@ fi
 
 # in case of permissions issue
 if [ ! -f /virtuoso/db/virtuoso.ini ]; then
-    echo "no virtuoso configuration found, virtuoso cannot start"
+    echo "no virtuoso configuration found, virtuoso cannot start, trying to rewrite permissions and copy default"
+#   chown -R 
+    cp -R /usr/local/virtuoso-opensource/var/lib/virtuoso/db /virtuoso/
     exit 1;
 fi
 
