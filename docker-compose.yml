@@ -16,8 +16,3 @@ services:
       - LETSENCRYPT_PORT=${VIRTUOSO_VIRTUAL_PORT}
       - LETSENCRYPT_EMAIL=${SITE_EMAIL}
     restart: always
-
-networks:
-  default:
-    external:
-      name: ${NETWORK:-webproxy}
