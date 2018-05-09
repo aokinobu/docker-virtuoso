@@ -7,12 +7,7 @@ services:
       - 1111:1111
       - 8890:8890
     volumes:
-      - ${HOME}/${SITE_CODE}/virtuoso/data:/virtuoso
-      - /etc/localtime:/etc/localtime
-    environment:
-      - VIRTUAL_HOST=${VIRTUOSO_VIRTUAL_HOST}
-      - VIRTUAL_PORT=${VIRTUOSO_VIRTUAL_PORT}
-      - LETSENCRYPT_HOST=${VIRTUOSO_VIRTUAL_HOST}
-      - LETSENCRYPT_PORT=${VIRTUOSO_VIRTUAL_PORT}
-      - LETSENCRYPT_EMAIL=${SITE_EMAIL}
+      - ${HOME}/${SITE_CODE}/virtuoso/data:/usr/local/virtuoso-opensource/var/lib/virtuoso
+# macosx cannot handle this
+#      - /etc/localtime:/etc/localtime
     restart: always
