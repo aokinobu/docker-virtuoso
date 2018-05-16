@@ -21,18 +21,6 @@ RUN git clone -v https://github.com/openlink/virtuoso-opensource.git 2>&1 > /var
   CFLAGS="-O2 -m64" && export CFLAGS && ./configure && \
   make && make install 2>&1 > /var/log/virtusos-compile.log
 
-#RUN cd /virtuoso-opensource && git checkout tags/v7.2.4.2
-#RUN cd /virtuoso-opensource && git checkout tags/v7.2.2.1
-#RUN cd /virtuoso-opensource && git checkout tags/v7.2.0.1
-#RUN cd /virtuoso-opensource && git checkout origin/stable/7
-#RUN cd /virtuoso-opensource && git checkout origin/develop/7
-#RUN cd /virtuoso-opensource && git checkout tags/v7.0.0
-
-#RUN cd /virtuoso-opensource && ./autogen.sh
-#RUN cd /virtuoso-opensource && CFLAGS="-O2 -m64" && export CFLAGS && ./configure
-#RUN cd /virtuoso-opensource && make
-#RUN cd /virtuoso-opensource && make install 2>&1 > /var/log/virtusos-compile.log
-
 ADD run.sh /run.sh
 RUN chmod a+x /run.sh
 
@@ -40,6 +28,8 @@ RUN mkdir /virtuoso
 
 RUN echo vm.swappiness=10 >> /etc/sysctl.conf
 
+# let's reuse all the work done in the script
+ADD config/virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
 ADD scripts /scripts
 VOLUME [/virtuoso]
 #ENTRYPOINT /sbin/sysctl -w vm.swappiness=10; /run.sh
