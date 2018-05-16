@@ -30,7 +30,6 @@ RUN echo vm.swappiness=10 >> /etc/sysctl.conf
 
 # let's reuse all the work done in the script
 ADD config/virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
-ADD scripts /scripts
 VOLUME [/virtuoso]
 #ENTRYPOINT /sbin/sysctl -w vm.swappiness=10; /run.sh
 CMD ["/run.sh"]

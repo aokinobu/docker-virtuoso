@@ -2,7 +2,7 @@ version: '3.4'
 services:
   virtuoso:
     build: .
-    image: aokinobu/virtuoso:v7.2.4.2
+    image: aokinobu/virtuoso
     ports:
       - 1111:1111
       - 8890:8890
