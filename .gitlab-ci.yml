@@ -1,7 +1,7 @@
 image: registry.gitlab.com/aokinobu/docker-compose:1.23.1
 
 variables:
-  VERSION_TAG: 7.2.4.2
+  VERSION_TAG: v7.2.4.2
 
 services:
   - docker:dind
