@@ -2,7 +2,7 @@ version: '3.4'
 services:
   virtuoso:
     build: .
-    image: aokinobu/virtuoso
+    image: ${CI_REGISTRY_IMAGE}:${VERSION_TAG}
     ports:
       - 1111:1111
       - 8890:8890

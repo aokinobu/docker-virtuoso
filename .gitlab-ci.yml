@@ -1,0 +1,28 @@
+image: registry.gitlab.com/aokinobu/docker-compose:1.23.1
+
+variables:
+  VERSION_TAG: 7.2.4.2
+
+services:
+  - docker:dind
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+
+build:
+  stage: build
+  script:
+    - echo "$CI_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - echo "$VERSION_TAG" .
+    - docker build --pull -t "$CI_IMAGE:$VERSION_TAG" .
+    - docker push "$CI_IMAGE:$VERSION_TAG" .
+  only:
+    - master
+
+#build:
+#  stage: build
+#  script:
+#    - docker build --pull -t "$CI_TEST_IMAGE:$CI_COMMIT_REF_SLUG" .
+#    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+#  except:
+#    - master

@@ -1,9 +1,11 @@
 # docker-virtuoso
 virtuoso on docker
 
-builds from opensource virtuoso, recommended to pull from docker.io
+builds from opensource virtuoso.
 
 ### notes:
+
+moved to [gitlab](https://gitlab.com/aokinobu/docker-virtuoso).
 
 this uses environment variables for the mounted data folder
 ${HOME}/${SITE_CODE}/virtuoso/data:/virtuoso
