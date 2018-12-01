@@ -12,10 +12,10 @@ before_script:
 build:
   stage: build
   script:
-    - echo "$CI_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - echo "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - echo "$VERSION_TAG" .
-    - docker build --pull -t "$CI_IMAGE:$VERSION_TAG" .
-    - docker push "$CI_IMAGE:$VERSION_TAG" .
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$VERSION_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$VERSION_TAG" .
   only:
     - master
 
