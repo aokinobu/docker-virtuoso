@@ -4,7 +4,7 @@ MAINTAINER Nobuyuki Paul Aoki <aokinobu@gmail.com>
 EXPOSE 8890
 
 RUN apt-get update && \
-  apt-get -y install dpkg-dev build-essential autoconf automake libtool flex bison gperf gawk m4 make odbcinst libxml2-dev libssl-dev libreadline-dev unzip git-core openssl net-tools procps libssl1.0-dev && \
+  apt-get -y install dpkg-dev build-essential autoconf automake libtool flex bison gperf gawk m4 make odbcinst libxml2-dev libssl-dev libreadline-dev unzip git-core net-tools procps libssl1.0-dev && \
   apt-get clean -qq -y && \
   apt-get autoclean -qq -y && \
   apt-get autoremove -qq -y &&  \
