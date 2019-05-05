@@ -1,5 +1,5 @@
-FROM debian:buster
-MAINTAINER Nobuyuki Paul Aoki <aokinobu@gmail.com>
+FROM debian:squeeze
+MAINTAINER Nobuyuki Paul Aoki <aoki@sparqlite.com>
 
 EXPOSE 8890
 
