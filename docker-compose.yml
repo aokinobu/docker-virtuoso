@@ -10,3 +10,8 @@ services:
 #      - ${PWD}/config/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
       - ${HOME_FOLDER}/${SITE_CODE:-virtuoso-docker}/virtuoso/data:/virtuoso
     restart: always
+
+networks:
+  default:
+    external:
+      name: ${NETWORK:-triplestorenet}
