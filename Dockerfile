@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:buster
 MAINTAINER Nobuyuki Paul Aoki <aokinobu@gmail.com>
 
 EXPOSE 8890
